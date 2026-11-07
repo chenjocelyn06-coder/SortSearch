@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+  max-width: 1100px;
+}
+
+.shop-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+
+.filters {
+  padding: 20px;
+  background: white;
+  border: 1px solid #e7dfe6;
+  border-radius: 12px;
+}
+
+.filters h2 {
+  margin-bottom: 20px;
+  color: #49304f;
+  font-weight: 700;
+}
+
+.shop-content {
+  min-width: 0;
+}
+
+@media (max-width: 700px) {
+  .shop-layout {
+    grid-template-columns: 1fr;
+  }
+}
+    * { box-sizing: border-box; }
+        #category-filter,
+    #size-filter {
+      width: 100%;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      border: 1px solid #c9beca;
+      border-radius: 10px;
+      background: white;
+      color: #28232b;
+      font: inherit;
+    }
+    body { max-width:720px; margin:64px auto; padding:0 24px; background:#f8f5ef; color:#28232b; font-family:system-ui,sans-serif; }
+    h1 { margin:0 0 12px; font:bold clamp(2.5rem,7vw,4rem) Georgia,serif; letter-spacing:-.05em; }
+    h2 { margin:0 0 28px; color:#625964; font-size:1.1rem; font-weight:500; }
+    label { display:block; margin-bottom:8px; font-weight:600; }
+    input,button { padding:12px 16px; border-radius:10px; font:inherit; }
+    input { width:100%; margin-bottom:12px; border:1px solid #c9beca; background:white; }
+    button { border:0; background:#49304f; color:white; cursor:pointer; }
+    button:hover { background:#604167; }
+    button:disabled { opacity:.5; cursor:default; }
+    #sort-button { margin-top:12px; }
+    #results { list-style:none; padding:0; margin-top:20px; }
+    #results li { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px 16px; padding:16px 18px; margin-bottom:10px; border:1px solid #e7dfe6; border-radius:12px; background:white; }
+    #results a { color:#49304f; font-weight:650; text-underline-offset:3px; }
+    .details { flex:1 1 260px; min-width:0; overflow-wrap:anywhere; }
+    .seller, .note { color:#625964; font-size:.9rem; }
+    .seller { margin-top:6px; }
+    #status { min-height:1.5em; }
+    #saved-items {
+  list-style: none;
+  padding: 0;
+}
+
+#saved-items li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  margin-bottom: 10px;
+  border: 1px solid #e7dfe6;
+  border-radius: 12px;
+  background: white;
+}
+
+#saved-items a {
+  color: #49304f;
+  font-weight: 650;
+}
+
+#saved-items .details {
+  flex: 1 1 260px;
+}
+    [hidden] { display:none !important; }
+    body {
+  max-width: 1100px;
+}
+
+.shop-layout {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+
+.filters {
+  padding: 20px;
+  background: white;
+  border: 1px solid #e7dfe6;
+  border-radius: 12px;
+}
+
+#category-filter,
+#size-filter {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid #c9beca;
+  border-radius: 10px;
+  background: white;
+  color: #28232b;
+  font: inherit;
+}
+
+@media (max-width: 700px) {
+  .shop-layout {
+    grid-template-columns: 1fr;
+  }
+}
+body {
+  max-width: 1400px;
+}
+
+.shop-layout {
+  grid-template-columns: 230px minmax(0, 1fr) 280px;
+  gap: 24px;
+}
+
+.saved-sidebar {
+  padding: 20px;
+  background: white;
+  border: 1px solid #e7dfe6;
+  border-radius: 12px;
+}
+
+.saved-sidebar h2 {
+  margin: 0 0 16px;
+  color: #49304f;
+  font-weight: 700;
+}
+
+@media (max-width: 1000px) {
+  .shop-layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+
+  .saved-sidebar {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 700px) {
+  .shop-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .saved-sidebar {
+    grid-column: 1;
+  }
+}
+#bookmarks-panel summary {
+  cursor: pointer;
+  padding: 12px 0;
+  color: #49304f;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+#bookmarks-panel[open] summary {
+  margin-bottom: 12px;
+  border-bottom: 1px solid #e7dfe6;
+}
+/* Welcome page */
+body.show-cover {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background: #d5f6fa;
+}
+
+/* Hide the shopping page until the visitor enters. */
+body.show-cover > :not(#welcome-cover):not(script) {
+  display: none !important;
+}
+
+#welcome-cover {
+  position: relative;
+  isolation: isolate;
+  min-height: 100svh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 28px clamp(24px, 6vw, 90px);
+  background:
+    radial-gradient(ellipse at 85% 15%, #effeff 0%, transparent 45%),
+    #d5f6fa;
+  color: #174b67;
+}
+
+#welcome-cover[hidden] {
+  display: none !important;
+}
+
+.cover-nav,
+.cover-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.cover-nav {
+  padding-bottom: 22px;
+  border-bottom: 1px solid #174b6726;
+  font-size: 13px;
+}
+
+.cover-brand {
+  color: #c82078;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.cover-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.cover-eyebrow {
+  display: inline-block;
+  margin-bottom: 26px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+}
+
+#welcome-title {
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+  font-size: clamp(58px, 12vw, 150px);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.065em;
+
+  background: linear-gradient(
+    to bottom,
+    #f7add4 0%,
+    #ef83bb 30%,
+    #e454a1 55%,
+    #d52286 80%,
+    #bd176e 100%
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  -webkit-text-stroke: 0;
+  paint-order: stroke fill;
+  filter: none;
+}
+
+#welcome-cover .cover-tagline {
+  margin: 0 0 22px;
+  color: #174b67;
+  font-family: Georgia, serif;
+  font-size: clamp(30px, 4.5vw, 52px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -1.5px;
+}
+
+.cover-description {
+  max-width: 410px;
+  margin: 0 auto 32px;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+#enter-shop {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 18px 26px;
+  border: 1px solid #bd176a;
+  border-radius: 999px;
+  background: #c82078;
+  color: white;
+  font-weight: 650;
+  box-shadow: 0 8px 0 #174b6710;
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+#enter-shop:hover {
+  transform: translateY(-3px);
+  background: #ad1765;
+}
+
+#enter-shop:focus-visible {
+  outline: 3px solid #174b67;
+  outline-offset: 5px;
+}
+
+.cover-caption {
+  margin-top: 20px;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.cover-footer {
+  padding-top: 20px;
+  border-top: 1px solid #174b6726;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.cover-bubbles {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.cover-bubbles span {
+  position: absolute;
+  border: 1px solid #ffffffb3;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 25%, #ffffffde, transparent 35%),
+    linear-gradient(135deg, #ffffff60, #55b9ec25);
+  box-shadow: inset -10px -12px 24px #3195c315;
+}
+
+.cover-bubbles span:nth-child(1) {
+  width: 260px;
+  height: 260px;
+  top: 110px;
+  left: -130px;
+}
+
+.cover-bubbles span:nth-child(2) {
+  width: 110px;
+  height: 110px;
+  top: 32%;
+  right: 5%;
+}
+
+.cover-bubbles span:nth-child(3) {
+  width: 55px;
+  height: 55px;
+  bottom: 22%;
+  left: 10%;
+}
+
+.cover-bubbles span:nth-child(4) {
+  width: 190px;
+  height: 190px;
+  bottom: -70px;
+  right: -35px;
+}
+
+@media (max-width: 600px) {
+  .cover-nav > span:last-child {
+    display: none;
+  }
+
+  .cover-content {
+    padding: 70px 0;
+  }
+
+  .cover-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #enter-shop {
+    transition: none;
+  }
+}
+/* Rounded, dimensional bubbles */
+.cover-bubbles span {
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+
+  background:
+    /* Bright reflection */
+    radial-gradient(
+      ellipse at 28% 22%,
+      white 0%,
+      rgba(255, 255, 255, 0.9) 5%,
+      rgba(255, 255, 255, 0.25) 15%,
+      transparent 29%
+    ),
+    /* Reflected light at the bottom */
+    radial-gradient(
+      ellipse at 65% 88%,
+      rgba(255, 227, 249, 0.85),
+      transparent 35%
+    ),
+    /* Shaded edge creates a round shape */
+    radial-gradient(
+      circle at 36% 30%,
+      rgba(244, 255, 255, 0.12) 28%,
+      rgba(123, 204, 233, 0.2) 55%,
+      rgba(72, 143, 197, 0.45) 79%,
+      rgba(197, 167, 231, 0.55) 92%,
+      rgba(255, 255, 255, 0.9) 100%
+    );
+
+  box-shadow:
+    inset 4px 5px 9px rgba(255, 255, 255, 0.95),
+    inset -8px -12px 20px rgba(58, 120, 174, 0.3),
+    inset 0 -3px 6px rgba(255, 199, 235, 0.75),
+    8px 16px 24px rgba(35, 104, 145, 0.12);
+}
+
+/* Broad curved highlight */
+.cover-bubbles span::before {
+  content: "";
+  position: absolute;
+  top: 12%;
+  left: 17%;
+  width: 52%;
+  height: 28%;
+  border: 0;
+  border-top: 5px solid rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.45),
+    transparent
+  );
+  transform: rotate(-35deg);
+  filter: blur(1px);
+}
+
+/* Small glossy reflection */
+.cover-bubbles span::after {
+  content: "";
+  position: absolute;
+  top: 35%;
+  left: 12%;
+  right: auto;
+  bottom: auto;
+  width: 8%;
+  height: 17%;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  transform: rotate(15deg);
+  filter: blur(1px);
+}
+#back-home {
+  margin-bottom: 24px;
+  padding: 10px 18px;
+  border: 1px solid #c82078;
+  border-radius: 999px;
+  background: transparent;
+  color: #c82078;
+  font-weight: 600;
+}
+
+#back-home:hover {
+  background: #fce5f1;
+}
+/* Shopping page */
+body:not(.show-cover) {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 32px clamp(20px, 4vw, 60px);
+  background: #fffcfd;
+  color: #26385b;
+}
+
+.shop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 64px;
+}
+
+.shop-brand h1 {
+  margin: 12px 0 0;
+  color: #d90080;
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+  font-size: 42px;
+  letter-spacing: -2px;
+}
+
+#back-home {
+  padding: 8px 14px;
+  border: 1px solid #df168a;
+  border-radius: 999px;
+  background: transparent;
+  color: #bd006d;
+  font-size: 13px;
+}
+
+.shop-layout {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.shop-layout .filters {
+  padding: 22px;
+  border: 1px solid #f0dfeb;
+  border-radius: 24px;
+  background: #fff5fa;
+  box-shadow: none;
+}
+
+.filters label {
+  color: #a60b66;
+  font-size: 14px;
+}
+
+.filters select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e3d6e4;
+  border-radius: 14px;
+  background: white;
+  color: #26385b;
+  font: inherit;
+}
+
+#size-container {
+  margin-top: 22px;
+}
+
+.shop-content {
+  min-width: 0;
+}
+
+.search-intro {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.search-intro h2 {
+  margin: 0 0 16px;
+  color: #315bb7;
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+  font-size: clamp(30px, 4vw, 54px);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+}
+
+.search-intro h2 span {
+  color: #d90080;
+}
+
+.search-intro p {
+  color: #65718a;
+  line-height: 1.6;
+}
+
+#search-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+}
+
+#search-form label {
+  grid-column: 1 / -1;
+  font-size: 14px;
+}
+
+#shoe-search {
+  margin: 0;
+  padding: 18px 22px;
+  border: 1px solid #cad8ed;
+  border-radius: 999px;
+  background: white;
+  box-shadow: 0 6px 20px #315bb708;
+}
+
+#search-button,
+#sort-button {
+  border-radius: 999px;
+  background: #315bb7;
+  color: white;
+}
+
+#search-button:hover,
+#sort-button:hover {
+  background: #24468f;
+}
+
+.search-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 24px;
+}
+
+.search-suggestions button {
+  padding: 8px 14px;
+  border: 1px solid #dbe7ee;
+  border-radius: 999px;
+  background: #f0fbfd;
+  color: #315b76;
+  font-size: 13px;
+}
+
+#results {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+#results li {
+  margin: 0;
+  padding: 24px;
+  border: 1px solid #ede1e9;
+  border-radius: 24px;
+  background: white;
+  box-shadow: 0 8px 24px #57233a05;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+#results li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px #57233a0d;
+}
+
+#results .details {
+  flex: 1 1 100%;
+}
+
+#results a {
+  color: #283e69;
+  text-decoration: none;
+  line-height: 1.5;
+}
+
+#results a:hover {
+  text-decoration: underline;
+}
+
+#results strong {
+  color: #b9006c;
+  font-size: 22px;
+}
+
+#results button {
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: #fff0f8;
+  color: #b9006c;
+  font-size: 13px;
+}
+
+#bookmarks-panel {
+  position: relative;
+  max-width: 360px;
+}
+
+#bookmarks-panel summary {
+  padding: 12px 18px;
+  border: 1px solid #f2cde1;
+  border-radius: 999px;
+  background: #fff0f8;
+  color: #c90078;
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#bookmarks-panel[open] {
+  padding: 12px;
+  border: 1px solid #f2cde1;
+  border-radius: 24px;
+  background: white;
+}
+
+#saved-items {
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+#saved-empty {
+  padding: 12px;
+  color: #65718a;
+  font-size: 14px;
+}
+
+.shop-content > .note {
+  margin-top: 40px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: #70798a;
+}
+
+body:not(.show-cover) :is(button, input, select, summary):focus-visible {
+  outline: 3px solid #df168a;
+  outline-offset: 4px;
+}
+
+@media (max-width: 800px) {
+  .shop-header {
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .shop-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  #results {
+    grid-template-columns: 1fr;
+  }
+
+  #bookmarks-panel {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  #search-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #results li {
+    transition: none;
+  }
+
+  #results li:hover {
+    transform: none;
+  }
+}
+  </style>
+  <link
+  href="https://fonts.googleapis.com/css2?family=Coiny&display=swap"
+  rel="stylesheet"
+>
+</head>
+<body class="show-cover">
+  <section id="welcome-cover" aria-labelledby="welcome-title">
+    <nav class="cover-nav">
+      <span class="cover-brand">SortSearch</span>
+      <span>A little less searching. A little more finding.</span>
+    </nav>
+
+    <div class="cover-content">
+      <span class="cover-eyebrow">YOUR NEXT GREAT FIND STARTS HERE</span>
+
+      <h1 id="welcome-title">SortSearch</h1>
+
+      <h2 class="cover-tagline">
+        A fresh take on<br>
+        finding your favorites.
+      </h2>
+
+      <p class="cover-description">
+        Explore products, compare prices, and keep your
+        favorite finds—all in one little shopping realm.
+      </p>
+
+      <button id="enter-shop" type="button">
+        Enter your shopping realm <span aria-hidden="true">↗</span>
+      </button>
+
+      <p class="cover-caption">Find it. Sort it. Save it.</p>
+    </div>
+
+    <div class="cover-bubbles" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <footer class="cover-footer">
+      <span>GOOD FINDS. LESS CLUTTER.</span>
+      <span>Made for the curious shopper.</span>
+    </footer>
+  </section>
+  <button id="back-home" type="button">← Back to home</button>
+  <h1>SortSearch</h1>
+  <h2>Sort your FAVORITE items from "low to high" with just a name!!</h2>
+  <div class="shop-layout">
+  <aside class="filters">
+    <label for="category-filter">Filter:</label>
+    <select id="category-filter">
+      <option value="">All categories</option>
+      <option value="shoes">Shoes</option>
+      <option value="tops">Tops</option>
+      <option value="bottoms">Bottoms</option>
+      <option value="outerwear">Outerwear</option>
+      <option value="technology">Technology</option>
+      <option value="home">Home</option>
+    </select>
+
+    <div id="size-container" hidden>
+      <label for="size-filter">Size:</label>
+      <select id="size-filter">
+        <option value="">Any size</option>
+      </select>
+    </div>
+  </aside>
+
+  <main class="shop-content">
+    <form id="search-form">
+      <label for="shoe-search">Search:</label>
+      <input
+        id="shoe-search"
+        type="search"
+        placeholder="Try McQueen sneakers or 1440p 360Hz Monitor"
+        required
+        minlength="2"
+        maxlength="160"
+      >
+      <button id="search-button" type="submit">Search</button>
+    </form>
+  <button id="sort-button" type="button" hidden>Price: Low to High</button>
+  <p id="status" role="status" aria-live="polite"></p>
+  <ul id="results"></ul>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const input = document.querySelector('#shoe-search');
+    const results = document.querySelector('#results');
+    const status = document.querySelector('#status');
+    const searchButton = document.querySelector('#search-button');
+    const sortButton = document.querySelector('#sort-button');
+    let offers = [], requestId = 0;
+    const categoryFilter = document.querySelector("#category-filter");
+const sizeFilter = document.querySelector("#size-filter");
+const sizeContainer = document.querySelector("#size-container");
+
+function updateSizes() {
+  const category = categoryFilter.value;
+
+  const hasSizes = [
+    "shoes", "tops", "bottoms", "outerwear"
+  ].includes(category);
+
+  sizeContainer.hidden = !hasSizes;
+  sizeFilter.replaceChildren(new Option("Any size", ""));
+
+  if (category === "shoes") {
+    // Approximate US conversion. Check each brand's size chart.
+    for (let mens = 3; mens <= 15; mens += 0.5) {
+      const womens = mens + 1.5;
+
+      sizeFilter.add(
+        new Option(
+          `W${womens} / M${mens}`,
+          `US women's size ${womens} men's size ${mens}`
+        )
+      );
+    }
+  } else if (hasSizes) {
+    const clothingSizes = [
+      "XXS", "XS", "S", "M", "L", "XL", "XXL", "3XL", "4XL"
+    ];
+
+    for (const size of clothingSizes) {
+      sizeFilter.add(new Option(size, `size ${size}`));
+    }
+  }
+
+  // Clear old results when the category changes.
+  requestId++;
+  offers = [];
+  results.replaceChildren();
+  sortButton.hidden = true;
+  searchButton.disabled = false;
+  status.textContent = "";
+}
+
+categoryFilter.addEventListener("change", updateSizes);
+
+sizeFilter.addEventListener("change", () => {
+  requestId++;
+  offers = [];
+  results.replaceChildren();
+  sortButton.hidden = true;
+  searchButton.disabled = false;
+  status.textContent = "";
+});
+
+updateSizes();
+    const savedList = document.querySelector("#saved-items");
+const savedEmpty = document.querySelector("#saved-empty");
+const bookmarkKey = "sortsearch-bookmarks";
+
+let bookmarks = [];
+
+try {
+  const stored = JSON.parse(localStorage.getItem(bookmarkKey) || "[]");
+
+  if (Array.isArray(stored)) {
+    bookmarks = stored.filter(item =>
+      item &&
+      typeof item.title === "string" &&
+      typeof item.url === "string" &&
+      /^https?:\/\//i.test(item.url)
+    );
+  }
+} catch {
+  bookmarks = [];
+}
+
+function sameItem(a, b) {
+  return a.url === b.url &&
+         a.title === b.title &&
+         a.store === b.store;
+}
+
+function saveBookmarks() {
+  try {
+    localStorage.setItem(bookmarkKey, JSON.stringify(bookmarks));
+  } catch {
+    alert("Your browser couldn’t save these bookmarks permanently.");
+  }
+}
+
+function renderBookmarks() {
+  savedList.replaceChildren();
+  savedEmpty.hidden = bookmarks.length > 0;
+
+  for (const item of bookmarks) {
+    const row = document.createElement("li");
+    const details = document.createElement("div");
+    details.className = "details";
+
+    const link = document.createElement("a");
+    link.href = item.url;
+    link.textContent = item.title;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+
+    const info = document.createElement("p");
+    info.className = "seller";
+    info.textContent =
+      `${item.store} — ${item.priceLabel} (price when saved)`;
+
+    const removeButton = document.createElement("button");
+    removeButton.type = "button";
+    removeButton.textContent = "Remove";
+
+    removeButton.addEventListener("click", () => {
+      bookmarks = bookmarks.filter(saved => !sameItem(saved, item));
+      saveBookmarks();
+      renderBookmarks();
+      render();
+    });
+
+    details.append(link, info);
+    row.append(details, removeButton);
+    savedList.append(row);
+  }
+}
+renderBookmarks();
+    function render() {
+      results.replaceChildren();
+      for (const offer of offers) {
+        const row = document.createElement('li');
+        const details = document.createElement('div');
+        details.className = 'details';
+        const title = document.createElement(offer.url ? 'a' : 'span');
+        title.textContent = offer.title;
+        if (offer.url) { title.href = offer.url; title.target = '_blank'; title.rel = 'noopener noreferrer'; }
+        const seller = document.createElement('div');
+        seller.className = 'seller'; seller.textContent = offer.store;
+        details.append(title, seller);
+        const price = document.createElement('strong');
+        price.textContent = offer.priceLabel;
+const bookmarkButton = document.createElement("button");
+bookmarkButton.type = "button";
+
+const alreadySaved = bookmarks.some(item => sameItem(item, offer));
+
+bookmarkButton.textContent = alreadySaved ? "Saved ✓" : "Bookmark";
+bookmarkButton.disabled = alreadySaved || !offer.url;
+
+bookmarkButton.addEventListener("click", () => {
+  if (bookmarks.some(item => sameItem(item, offer))) return;
+
+  bookmarks.push({ ...offer });
+  saveBookmarks();
+  renderBookmarks();
+  render();
+});
+
+row.append(details, price, bookmarkButton);
+results.append(row);      }
+    }
+    document.querySelector('#search-form').addEventListener('submit', async event => {
+      event.preventDefault();
+      const query = input.value.trim();
+      if (query.length < 2) { status.textContent = 'Type at least two characters.'; return; }
+      const id = ++requestId;
+      offers = []; render(); sortButton.hidden = true; searchButton.disabled = true;
+      status.textContent = 'Searching stores…';
+      try {
+        const categoryWords = {
+  shoes: "shoes",
+  tops: "tops clothing",
+  bottoms: "bottoms clothing",
+  outerwear: "outerwear",
+  technology: "electronics",
+  home: "home goods"
+};
+
+const category = categoryFilter.value;
+const size = sizeContainer.hidden ? "" : sizeFilter.value;
+
+const searchQuery = [
+  query,
+  categoryWords[category] || "",
+  size
+].filter(Boolean).join(" ");
+
+const response = await fetch(
+  "/api/search?q=" + encodeURIComponent(searchQuery)
+);
+        const data = await response.json();
+        if (id !== requestId) return;
+        if (!response.ok) throw new Error(data.error || 'Search failed. Try again.');
+        offers = data.offers;
+        render(); sortButton.hidden = offers.length === 0;
+        status.textContent = offers.length ? `${offers.length} results for “${query}”. Retrieved ${new Date(data.retrievedAt).toLocaleTimeString()}.` : `No results for “${query}”. Try a brand or model name.`;
+      } catch (error) {
+        if (id === requestId) status.textContent = location.protocol === 'file:' ? 'Open http://localhost:3000 after starting the server.' : error.message;
+      } finally { if (id === requestId) searchButton.disabled = false; }
+    });
+    input.addEventListener('input', () => {
+      requestId++; offers = []; render(); sortButton.hidden = true; searchButton.disabled = false; status.textContent = '';
+    });
+    sortButton.addEventListener('click', () => {
+      offers.sort((a,b) => (a.price ?? Infinity) - (b.price ?? Infinity)); render();
+      status.textContent = 'Returned results sorted by listed USD price. Unavailable or other price formats appear last.';
+    });
+  });
+  </script>
+  </main>
+
+<aside class="saved-sidebar">
+  <details id="bookmarks-panel">
+    <summary>My bookmarks</summary>
+
+    <p id="saved-empty">
+      You haven’t bookmarked anything yet.
+    </p>
+
+    <ul id="saved-items"></ul>
+  </details>
+
+  <p class="note">
+    US shopping results. Prices may change; check size,
+    condition, shipping, taxes, and seller details before
+    buying. Some links open Google Shopping.
+  </p>
+</aside>
+
+</div>
+<script>
+  document.querySelector("#enter-shop").addEventListener("click", () => {
+    document.querySelector("#welcome-cover").hidden = true;
+    document.body.classList.remove("show-cover");
+
+    window.scrollTo(0, 0);
+    document.querySelector("#shoe-search").focus();
+  });
+</script>
+<script>
+  document.querySelector("#back-home").addEventListener("click", () => {
+    document.querySelector("#welcome-cover").hidden = false;
+    document.body.classList.add("show-cover");
+    window.scrollTo(0, 0);
+    document.querySelector("#enter-shop").focus();
+  });
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const main = document.querySelector(".shop-content");
+  const layout = document.querySelector(".shop-layout");
+  const logo = document.querySelector("body > h1");
+  const wishlist = document.querySelector("#bookmarks-panel");
+  const sidebar = document.querySelector(".saved-sidebar");
+
+  if (!main || !layout || !logo || !wishlist) return;
+
+  // Replace the old shopping-page tagline.
+  document.querySelector("body > h2")?.remove();
+
+  // Top bar: back button and logo left, wishlist right.
+  const header = document.createElement("header");
+  header.className = "shop-header";
+
+  const brand = document.createElement("div");
+  brand.className = "shop-brand";
+
+  let backButton = document.querySelector("#back-home");
+
+  if (!backButton) {
+    backButton = document.createElement("button");
+    backButton.id = "back-home";
+    backButton.type = "button";
+    backButton.textContent = "← Back to home";
+
+    backButton.addEventListener("click", () => {
+      document.querySelector("#welcome-cover").hidden = false;
+      document.body.classList.add("show-cover");
+      window.scrollTo(0, 0);
+      document.querySelector("#enter-shop").focus();
+    });
+  }
+
+  brand.append(backButton, logo);
+  wishlist.querySelector("summary").textContent = "My wishlist ♡";
+
+  header.append(brand, wishlist);
+  layout.before(header);
+
+  // Keep the price information underneath the results.
+  const note = sidebar?.querySelector(".note");
+  if (note) main.append(note);
+  sidebar?.remove();
+
+  // Your sketch's main heading.
+  const intro = document.createElement("div");
+  intro.className = "search-intro";
+  intro.innerHTML = `
+    <h2>What’s 🫵 next <span>GREAT find?</span></h2>
+    <p>Find your favorites. Compare prices. Save your favorites.</p>
+  `;
+  main.prepend(intro);
+
+  // Suggestions fill the search field; Search runs the request.
+  const suggestions = document.createElement("div");
+  suggestions.className = "search-suggestions";
+  suggestions.setAttribute("aria-label", "Search suggestions");
+
+  const input = document.querySelector("#shoe-search");
+  input.placeholder = "Try Hoka sneakers or Sony headphones";
+
+  for (const term of [
+    "Hoka sneakers",
+    "Sony headphones",
+    "Table lamp"
+  ]) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = term;
+
+    button.addEventListener("click", () => {
+      const category = document.querySelector("#category-filter");
+      category.value = "";
+      category.dispatchEvent(new Event("change"));
+
+      input.value = term;
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+      input.focus();
+    });
+
+    suggestions.append(button);
+  }
+
+  document.querySelector("#search-form").after(suggestions);
+});
+</script>
+</body>
+</html>
